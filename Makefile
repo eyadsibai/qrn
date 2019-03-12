@@ -1,24 +1,24 @@
 PREFIX = /usr/local
 
-kjv: kjv.sh kjv.awk kjv.tsv
-	cat kjv.sh > $@
+qrn: qrn.sh qrn.awk qrn.tsv
+	cat qrn.sh > $@
 	echo 'exit 0' >> $@
 	echo '#EOF' >> $@
-	tar cz kjv.awk kjv.tsv >> $@
+	tar cz qrn.awk qrn.tsv >> $@
 	chmod +x $@
 
-test: kjv.sh
-	shellcheck -s sh kjv.sh
+test: qrn.sh
+	shellcheck -s sh qrn.sh
 
 clean:
-	rm -f kjv
+	rm -f qrn
 
-install: kjv
+install: qrn
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp -f kjv $(DESTDIR)$(PREFIX)/bin
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/kjv
+	cp -f qrn $(DESTDIR)$(PREFIX)/bin
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/qrn
 
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/kjv
+	rm -f $(DESTDIR)$(PREFIX)/bin/qrn
 
 .PHONY: test clean install uninstall
